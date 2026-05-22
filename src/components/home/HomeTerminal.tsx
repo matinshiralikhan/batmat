@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 const ROUTES: Record<string, string> = {
   work: "/work",
+  tools: "/tools",
   systems: "/systems",
   signal: "/signal",
   transmissions: "/transmissions",
@@ -30,9 +31,10 @@ const ROUTES: Record<string, string> = {
 };
 
 const LS_OUTPUT = `
-<span class="text-bat-red">work/</span>        <span class="text-bat-ghost">systems/</span>     <span class="text-bat-red">signal/</span>
-<span class="text-bat-ghost">transmissions/</span> <span class="text-bat-ghost">frequencies/</span> <span class="text-bat-ghost">cinema/</span>
-<span class="text-bat-ghost">reading/</span>     <span class="text-bat-ghost">manifesto/</span>   <span class="text-bat-ghost">contact/</span>`.trim();
+<span class="text-bat-red">work/</span>          <span class="text-bat-red">tools/</span>       <span class="text-bat-ghost">systems/</span>
+<span class="text-bat-red">signal/</span>        <span class="text-bat-ghost">transmissions/</span> <span class="text-bat-ghost">contact/</span>
+<span class="text-bat-ghost">frequencies/</span>   <span class="text-bat-ghost">cinema/</span>      <span class="text-bat-ghost">reading/</span>
+<span class="text-bat-ghost">manifesto/</span>     <span class="text-bat-ghost">archive/</span>`.trim();
 
 const HELP_OUTPUT = `
 <span class="text-bat-red">Available commands:</span>

@@ -7,18 +7,19 @@ import BatmarkLogo from "@/components/ui/BatmarkLogo";
 
 const mainLinks = [
   { href: "/work",          label: "Work" },
+  { href: "/tools",         label: "Tools" },
   { href: "/systems",       label: "Systems" },
   { href: "/signal",        label: "Signal" },
-  { href: "/transmissions", label: "Transmissions" },
   { href: "/contact",       label: "Contact" },
 ];
 
 const extraLinks = [
-  { href: "/frequencies", label: "Frequencies" },
-  { href: "/cinema",      label: "Cinema" },
-  { href: "/reading",     label: "Reading" },
-  { href: "/manifesto",   label: "Manifesto" },
-  { href: "/archive",     label: "Archive" },
+  { href: "/transmissions", label: "Transmissions" },
+  { href: "/frequencies",   label: "Frequencies" },
+  { href: "/cinema",        label: "Cinema" },
+  { href: "/reading",       label: "Reading" },
+  { href: "/manifesto",     label: "Manifesto" },
+  { href: "/archive",       label: "Archive" },
 ];
 
 export default function Nav() {
