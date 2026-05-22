@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────
+   BATMAT — Design System
+   Light/dark via html.light overriding --color-* vars.
+   RTL/Persian via html.fa changing --font-* vars.
+   ───────────────────────────────────────────────────── */
+
+/* ─── IRANSansX — place files in /public/fonts/IRANSansX/ ─── */
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX/IRANSansXFaNum-Regular.woff2') format('woff2'),
+       url('/fonts/IRANSansX/IRANSansXFaNum-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX/IRANSansXFaNum-Medium.woff2') format('woff2'),
+       url('/fonts/IRANSansX/IRANSansXFaNum-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansX';
+  src: url('/fonts/IRANSansX/IRANSansXFaNum-Bold.woff2') format('woff2'),
+       url('/fonts/IRANSansX/IRANSansXFaNum-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Tailwind v4 tokens — inline = utilities use var() references ─── */
+@theme inline {
+  /* Dark mode defaults — overridden in html.light */
+  --color-bat-black:    #0A0A0A;
+  --color-bat-graphite: #111111;
+  --color-bat-dark:     #1A1A1A;
+  --color-bat-concrete: #2C2C2C;
+  --color-bat-ash:      #555555;
+  --color-bat-ghost:    #888888;
+  --color-bat-white:    #F0F0EE;
+  --color-bat-clinical: #FAFAFA;
+
+  /* Brand colors — never change */
+  --color-bat-red:      #C0131A;
+  --color-bat-deep-red: #8B0000;
+
+  /* Font stacks */
+  --font-display: var(--font-bebas), sans-serif;
+  --font-mono:    var(--font-space-mono), monospace;
+  --font-body:    var(--font-inter), sans-serif;
+}
+
+/* ─── Static theme values ─── */
+@theme {
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 1rem;
+}
+
+/* ─── Light mode — override the Tailwind-generated CSS vars ─── */
+html.light {
+  --color-bat-black:    #F0F0EE;
+  --color-bat-graphite: #E6E6E4;
+  --color-bat-dark:     #DCDCDA;
+  --color-bat-concrete: #C4C4C2;
+  --color-bat-ash:      #666666;
+  --color-bat-ghost:    #999999;
+  --color-bat-white:    #111111;
+  --color-bat-clinical: #0A0A0A;
+}
+
+/* ─── Persian / RTL — switch to IRANSansX ─── */
+html.fa {
+  --font-body:    'IRANSansX', 'Tahoma', system-ui, sans-serif;
+  --font-display: 'IRANSansX', system-ui, sans-serif;
+  --font-mono:    'IRANSansX', 'Courier New', monospace;
+}
+
+/* ─── Global base ─── */
+*,
+*::before,
+*::after {
+  cursor: none;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background: var(--color-bat-black);
+  color: var(--color-bat-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bat-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #C0131A;
+  border-radius: 0;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: #C0131A;
+  color: #F0F0EE;
+}
+
+/* ─── Focus ─── */
+:focus-visible {
+  outline: 1px solid #C0131A;
+  outline-offset: 3px;
+}
+
+/* ─── Bat-in-Moon Cursor — dark mode ─── */
+.cursor-moon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  margin-left: -26px;
+  margin-top: -26px;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at 42% 38%,
+    rgba(240, 240, 238, 0.13) 0%,
+    rgba(240, 240, 238, 0.04) 55%,
+    transparent 100%
+  );
+  transition:
+    background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    width 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    height 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    margin 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.light .cursor-moon {
+  background: radial-gradient(
+    circle at 42% 38%,
+    rgba(17, 17, 17, 0.13) 0%,
+    rgba(17, 17, 17, 0.04) 55%,
+    transparent 100%
+  );
+}
+
+.cursor-moon.is-hovering {
+  width: 68px;
+  height: 68px;
+  margin-left: -34px;
+  margin-top: -34px;
+  background: radial-gradient(
+    circle at 42% 38%,
+    rgba(192, 19, 26, 0.22) 0%,
+    rgba(192, 19, 26, 0.07) 55%,
+    transparent 100%
+  );
+}
+
+.cursor-bat {
+  width: 22px;
+  height: 14px;
+  color: rgba(240, 240, 238, 0.65);
+  transition:
+    color 300ms ease,
+    width 250ms ease,
+    height 250ms ease;
+  flex-shrink: 0;
+}
+
+html.light .cursor-bat {
+  color: rgba(17, 17, 17, 0.65);
+}
+
+.cursor-moon.is-hovering .cursor-bat {
+  color: #C0131A;
+  width: 28px;
+  height: 18px;
+}
+
+/* ─── Marquee ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Blinking cursor ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Command Palette backdrop ─── */
+.palette-backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ─── Konami overlay ─── */
+@keyframes konamiIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes konamiOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.04); }
+}
+
+.konami-in  { animation: konamiIn  0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.konami-out { animation: konamiOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+/* ─── Status widget pulse ─── */
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.status-pulse {
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+/* ─── Heatmap cell ─── */
+.heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* ─── RTL utilities ─── */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none; }
+}
