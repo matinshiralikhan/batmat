@@ -13,7 +13,7 @@ export default function NotFound() {
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
         aria-hidden="true"
       >
-        <span className="font-display text-[30vw] leading-none text-bat-graphite tracking-tighter">
+        <span className="font-display text-[clamp(6rem,30vw,22rem)] leading-none text-bat-graphite tracking-tighter">
           404
         </span>
       </div>

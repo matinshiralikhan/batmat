@@ -28,7 +28,7 @@ export default function TransmissionsPage() {
           <p className="font-mono text-2xs tracking-[0.25em] uppercase text-bat-red mb-6">
             Transmissions
           </p>
-          <h1 className="font-display text-7xl md:text-9xl leading-none text-bat-white tracking-tight mb-8">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none text-bat-white tracking-tight mb-8">
             WRITING.
           </h1>
           <p className="font-body text-base text-bat-ash leading-relaxed max-w-md">

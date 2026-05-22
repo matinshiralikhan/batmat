@@ -15,7 +15,7 @@ export default function SignalPage() {
           <p className="font-mono text-2xs tracking-[0.25em] uppercase text-bat-red mb-6">
             Signal
           </p>
-          <h1 className="font-display text-7xl md:text-9xl leading-none text-bat-white tracking-tight">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none text-bat-white tracking-tight">
             WHO.
           </h1>
         </div>

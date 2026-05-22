@@ -15,7 +15,7 @@ export default function WorkPage() {
           <p className="font-mono text-2xs tracking-[0.25em] uppercase text-bat-red mb-6">
             Work
           </p>
-          <h1 className="font-display text-7xl md:text-9xl leading-none text-bat-white tracking-tight mb-8">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none text-bat-white tracking-tight mb-8">
             SELECTED
             <br />
             <span className="text-bat-ash">WORK.</span>
@@ -33,7 +33,7 @@ export default function WorkPage() {
               key={project.id}
               className="py-16 group"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_360px] gap-8 lg:gap-12 items-start">
                 {/* Left — identity */}
                 <div>
                   <div className="flex items-center gap-4 mb-6">
@@ -47,7 +47,7 @@ export default function WorkPage() {
                       {project.year}
                     </span>
                   </div>
-                  <h2 className="font-display text-5xl md:text-7xl text-bat-white tracking-wider mb-6 group-hover:text-bat-clinical transition-colors duration-300">
+                  <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-bat-white tracking-wider mb-6 group-hover:text-bat-clinical transition-colors duration-300">
                     {project.title.toUpperCase()}
                   </h2>
                   <p className="font-body text-base text-bat-red leading-relaxed mb-6">

@@ -50,7 +50,7 @@ function StatItem({
   return (
     <div className="flex flex-col gap-3 py-10 md:py-12 group">
       <div
-        className="font-display text-6xl md:text-7xl lg:text-8xl text-bat-white leading-none tracking-tighter tabular-nums"
+        className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-bat-white leading-none tracking-tighter tabular-nums"
         aria-label={`${value}${suffix} ${label}`}
       >
         <span>{count}</span>
@@ -87,9 +87,9 @@ export default function StatsBar() {
       className="bg-bat-black border-y border-bat-concrete px-8 md:px-16 lg:px-24"
       aria-label="Numbers"
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-bat-concrete">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-bat-concrete">
         {stats.map((s, i) => (
-          <div key={i} className="px-6 first:pl-0 last:pr-0">
+          <div key={i} className="px-4 md:px-6 first:pl-0 last:pr-0">
             <StatItem {...s} trigger={triggered} />
           </div>
         ))}

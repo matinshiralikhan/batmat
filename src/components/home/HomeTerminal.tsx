@@ -247,7 +247,8 @@ export default function HomeTerminal() {
                 {line.type === "input" && (
                   <>
                     <span className="text-bat-red flex-shrink-0 select-none">
-                      daxson@batmat:~$
+                      <span className="hidden sm:inline">daxson@batmat:~$</span>
+                      <span className="sm:hidden">$</span>
                     </span>
                     <span className="text-bat-clinical">{line.content}</span>
                   </>
@@ -272,7 +273,8 @@ export default function HomeTerminal() {
           {/* Input line */}
           <div className="flex items-center gap-2 px-4 py-3 border-t border-bat-concrete">
             <span className="font-mono text-xs text-bat-red flex-shrink-0 select-none">
-              daxson@batmat:~$
+              <span className="hidden sm:inline">daxson@batmat:~$</span>
+              <span className="sm:hidden">$</span>
             </span>
             <input
               ref={inputRef}
