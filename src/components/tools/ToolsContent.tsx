@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import WhatIsMyIP from "./WhatIsMyIP";
 
 // ─── Types ────────────────────────────────────────────────
 type Category = "all" | "network" | "security" | "linux" | "devops";
@@ -778,6 +779,12 @@ export default function ToolsContent() {
             Network diagnostics, security utilities, Linux helpers, DevOps tools.
             All run in your browser. No data leaves your machine for the offline tools.
           </p>
+        </div>
+
+        {/* Featured: What Is My IP */}
+        <div className="mb-16">
+          <p className="font-mono text-2xs tracking-[0.25em] uppercase text-bat-ash mb-4">Featured</p>
+          <WhatIsMyIP />
         </div>
 
         {/* Category filter */}
