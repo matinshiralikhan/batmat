@@ -7,7 +7,10 @@ import StatsBar from "@/components/home/StatsBar";
 import ScrollReveal from "@/components/home/ScrollReveal";
 import AnimatedVisuals from "@/components/home/AnimatedVisuals";
 import TheCrack from "@/components/home/TheCrack";
+import PhotoSection from "@/components/home/PhotoSection";
 import WorkPreview from "@/components/home/WorkPreview";
+import TimelineSection from "@/components/home/TimelineSection";
+import SkillMatrix from "@/components/home/SkillMatrix";
 import GithubPanel from "@/components/home/GithubPanel";
 import HeatmapSection from "@/components/home/HeatmapSection";
 import XFeed from "@/components/home/XFeed";
@@ -24,7 +27,10 @@ export default function Home() {
       <ScrollReveal />
       <AnimatedVisuals />
       <TheCrack />
+      <PhotoSection />
       <WorkPreview />
+      <TimelineSection />
+      <SkillMatrix />
       <Suspense fallback={<GithubSkeleton />}>
         <GithubPanel />
       </Suspense>
@@ -37,10 +43,10 @@ export default function Home() {
 
 function GithubSkeleton() {
   return (
-    <section className="bg-bat-graphite py-24 px-8 md:px-16 lg:px-24 border-t border-bat-concrete">
+    <section className="bg-bat-graphite py-32 px-8 md:px-16 lg:px-24 border-t border-bat-concrete">
       <div className="max-w-6xl mx-auto">
-        <div className="h-8 w-48 bg-bat-concrete animate-pulse mb-4 rounded-none" />
-        <div className="h-16 w-64 bg-bat-concrete animate-pulse rounded-none" />
+        <div className="h-4 w-40 bg-bat-concrete animate-pulse mb-4" />
+        <div className="h-16 w-64 bg-bat-concrete animate-pulse" />
       </div>
     </section>
   );

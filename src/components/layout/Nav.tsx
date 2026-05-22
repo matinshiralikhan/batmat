@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BatmarkLogo from "@/components/ui/BatmarkLogo";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const mainLinks = [
   { href: "/work",          label: "Work" },
@@ -60,14 +59,10 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
-            <div className="border-s border-bat-concrete ps-4 ms-2">
-              <ThemeToggle />
-            </div>
           </nav>
 
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-4 relative z-50">
-            <ThemeToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="font-mono text-[0.6rem] tracking-[0.22em] uppercase text-bat-ghost hover:text-bat-white transition-colors p-1"

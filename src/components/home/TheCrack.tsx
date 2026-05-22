@@ -60,10 +60,10 @@ export default function TheCrack() {
           <p className="font-display text-4xl md:text-6xl lg:text-7xl leading-tight text-bat-ash mt-2">
             Some of them are for companies.
           </p>
-          <p className="font-display text-4xl md:text-6xl lg:text-7xl leading-tight text-bat-red mt-2">
+          <p className="font-display text-4xl md:text-6xl lg:text-7xl leading-tight text-bat-red mt-2 glitch-text" data-text="Some of them are for people">
             Some of them are for people
             <br />
-            who need to get out.
+            <span className="text-bat-white glitch-text" data-text="who need to get out.">who need to get out.</span>
           </p>
         </blockquote>
 

@@ -38,6 +38,16 @@ function useTextScramble(trigger: boolean) {
   return display;
 }
 
+const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 2 + 1,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  dur: 6 + Math.random() * 10,
+  delay: Math.random() * 8,
+  type: i % 3 as 0 | 1 | 2,
+}));
+
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const batRef = useRef<HTMLDivElement>(null);
@@ -58,29 +68,15 @@ export default function Hero() {
       );
 
       const tl = gsap.timeline();
-
       tl.to({}, { duration: 0.3 });
-
       tl.to(batRef.current, {
         autoAlpha: 1, y: 0, duration: 1.0, ease: "power3.out",
         onComplete: () => setScrambleTrigger(true),
       });
-
-      tl.to(titleRef.current, {
-        autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out",
-      }, "-=0.2");
-
-      tl.to(lineRef.current, {
-        autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out",
-      }, "-=0.1");
-
-      tl.to(taglineRef.current, {
-        autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out",
-      }, "+=0.1");
-
-      tl.to(scrollRef.current, {
-        autoAlpha: 1, y: 0, duration: 0.6,
-      }, "+=0.5");
+      tl.to(titleRef.current, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.2");
+      tl.to(lineRef.current, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.1");
+      tl.to(taglineRef.current, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" }, "+=0.1");
+      tl.to(scrollRef.current, { autoAlpha: 1, y: 0, duration: 0.6 }, "+=0.5");
     }, containerRef);
 
     return () => ctx.revert();
@@ -92,11 +88,11 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center bg-bat-black overflow-hidden"
       aria-label="Hero"
     >
-      {/* Moon background glow — very subtle */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-        aria-hidden="true"
-      >
+      {/* Scanline sweep */}
+      <div className="scanline" aria-hidden="true" />
+
+      {/* Moon background glow */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
         <div
           className="w-[min(90vh,90vw)] aspect-square rounded-full"
           style={{
@@ -106,7 +102,34 @@ export default function Hero() {
         />
       </div>
 
-      {/* Noise texture overlay */}
+      {/* Red inner glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "radial-gradient(ellipse 60% 50% at 50% 60%, rgba(192,19,26,0.06) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {PARTICLES.map((p) => (
+          <div
+            key={p.id}
+            className="absolute rounded-full"
+            style={{
+              width: p.size,
+              height: p.size,
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              background: p.id % 5 === 0 ? "rgba(192,19,26,0.6)" : "rgba(240,240,238,0.18)",
+              animation: `drift-${p.type + 1} ${p.dur}s ${p.delay}s ease-in-out infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Noise texture */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
@@ -115,13 +138,31 @@ export default function Hero() {
         }}
       />
 
+      {/* Corner accent lines */}
+      <div className="absolute top-0 left-0 w-24 h-24 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-16 left-8 w-px h-8 bg-bat-concrete/40" />
+        <div className="absolute top-16 left-8 w-8 h-px bg-bat-concrete/40" />
+      </div>
+      <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-16 right-8 w-px h-8 bg-bat-concrete/40" />
+        <div className="absolute top-16 right-8 w-8 h-px bg-bat-concrete/40" />
+      </div>
+      <div className="absolute bottom-0 left-0 w-24 h-24 pointer-events-none" aria-hidden="true">
+        <div className="absolute bottom-16 left-8 w-px h-8 bg-bat-concrete/40" />
+        <div className="absolute bottom-16 left-8 w-8 h-px bg-bat-concrete/40" />
+      </div>
+      <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none" aria-hidden="true">
+        <div className="absolute bottom-16 right-8 w-px h-8 bg-bat-concrete/40" />
+        <div className="absolute bottom-16 right-8 w-8 h-px bg-bat-concrete/40" />
+      </div>
+
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center text-center px-8 select-none">
         {/* Bat mark */}
         <div ref={batRef} className="mb-10">
           <BatSVG
             width={100}
-            className="text-bat-red drop-shadow-[0_0_32px_rgba(192,19,26,0.4)]"
+            className="text-bat-red drop-shadow-[0_0_32px_rgba(192,19,26,0.5)]"
           />
         </div>
 
@@ -129,6 +170,7 @@ export default function Hero() {
         <div ref={titleRef}>
           <h1
             className="font-display text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[9rem] xl:text-[10rem] leading-none tracking-[0.06em] text-bat-white"
+            data-text={scrambled}
             aria-label="BATMAT"
           >
             {scrambled}
@@ -158,22 +200,8 @@ export default function Hero() {
         <span className="font-mono text-[0.6rem] tracking-[0.25em] uppercase text-bat-concrete">
           {t.hero.scroll}
         </span>
-        <svg
-          width="1"
-          height="48"
-          viewBox="0 0 1 48"
-          className="overflow-visible"
-        >
-          <line
-            x1="0.5"
-            y1="0"
-            x2="0.5"
-            y2="48"
-            stroke="#C0131A"
-            strokeWidth="1"
-            strokeDasharray="4 4"
-            className="animate-pulse"
-          />
+        <svg width="1" height="48" viewBox="0 0 1 48" className="overflow-visible">
+          <line x1="0.5" y1="0" x2="0.5" y2="48" stroke="#C0131A" strokeWidth="1" strokeDasharray="4 4" className="animate-pulse" />
         </svg>
       </div>
     </section>
