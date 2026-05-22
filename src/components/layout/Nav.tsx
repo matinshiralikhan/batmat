@@ -5,14 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BatmarkLogo from "@/components/ui/BatmarkLogo";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import LangToggle from "@/components/ui/LangToggle";
-import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Nav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { t } = useLanguage();
+  const t = {
+    nav: {
+      work: "Work", systems: "Systems", signal: "Signal",
+      transmissions: "Transmissions", contact: "Contact",
+      frequencies: "Frequencies", cinema: "Cinema", reading: "Reading",
+      manifesto: "Manifesto", archive: "Archive",
+      menu: "MENU", close: "CLOSE", quiet: "Quiet until it isn't.",
+    },
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 2800);
@@ -74,16 +80,14 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
-            <div className="flex items-center gap-3 ms-4 border-s border-bat-concrete ps-4">
+            <div className="ms-4 border-s border-bat-concrete ps-4">
               <ThemeToggle />
-              <LangToggle />
             </div>
           </nav>
 
           {/* Mobile: toggles + hamburger */}
           <div className="md:hidden flex items-center gap-3 relative z-50">
             <ThemeToggle />
-            <LangToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="font-mono text-[0.6rem] tracking-[0.22em] uppercase text-bat-ghost hover:text-bat-white transition-colors"

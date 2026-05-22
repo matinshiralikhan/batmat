@@ -1,13 +1,15 @@
 import { Suspense } from "react";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
+import HomeTerminal from "@/components/home/HomeTerminal";
 import SystemReveal from "@/components/home/SystemReveal";
 import StatsBar from "@/components/home/StatsBar";
+import ScrollReveal from "@/components/home/ScrollReveal";
+import AnimatedVisuals from "@/components/home/AnimatedVisuals";
 import TheCrack from "@/components/home/TheCrack";
 import WorkPreview from "@/components/home/WorkPreview";
 import GithubPanel from "@/components/home/GithubPanel";
 import HeatmapSection from "@/components/home/HeatmapSection";
-import ScrollReveal from "@/components/home/ScrollReveal";
 import XFeed from "@/components/home/XFeed";
 import ContactSignal from "@/components/home/ContactSignal";
 
@@ -16,9 +18,11 @@ export default function Home() {
     <main>
       <Hero />
       <Marquee />
+      <HomeTerminal />
       <SystemReveal />
       <StatsBar />
       <ScrollReveal />
+      <AnimatedVisuals />
       <TheCrack />
       <WorkPreview />
       <Suspense fallback={<GithubSkeleton />}>
