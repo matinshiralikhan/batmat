@@ -205,9 +205,7 @@ function getBrowserInfo(): BrowserInfo {
 // ─── Fetch IP Data ────────────────────────────────────────
 async function fetchIPData(): Promise<IPData | null> {
   try {
-    const res = await fetch(
-      "https://ip-api.com/json/?fields=status,message,country,countryCode,regionName,city,zip,lat,lon,timezone,isp,org,as,asname,proxy,hosting,mobile,query"
-    );
+    const res = await fetch("/api/ip-info");
     if (!res.ok) return null;
     return res.json();
   } catch {
